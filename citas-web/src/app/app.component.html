@@ -1,0 +1,58 @@
+<div class="container searchbar">
+  <h1 class="center teal-text">Fuckgle <i class="tiny material-icons right">insert_chart</i></h1>
+  <input type="text" class="browser-default searchbar__input">
+
+
+  <nav class="searchbar__menu">
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.random)" routerLink="/lucky">Tengo suerte!</a>
+        <a class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.lowPrice)">Ahí pal gasto...</a>
+        <a class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.highPrice)">Estoy quinceniaooo!!</a>
+        <a class="breadcrumb searchbar__menu-item" (click)="showFilters=!showFilters">Busqueda personalizada ⚙️</a>
+      </div>
+    </div>
+  </nav>
+  <div class="section"></div>
+  <div *ngIf="showFilters"  class="searchbar__filter animate__animated" [ngClass]="showFilters ? 'animate__fadeInDown' : 'animate__fadeOutUp'" >
+    <div class="col s4 searchbar__filter-item">
+      <span class="grey-text text-darken-0">Por nombre</span>
+      <div class="switch">
+        <label>
+          Off
+          <input type="checkbox">
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+    </div>
+    <div class="col s4 searchbar__filter-item">
+      <span class="grey-text text-darken-0">Por precio</span>
+      <div class="switch">
+        <label>
+          Off
+          <input type="checkbox">
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+    </div>
+    <div class="col s4 searchbar__filter-item">
+      <span class="grey-text text-darken-0">Por servicio</span>
+      <div class="switch">
+        <label>
+          Off
+          <input type="checkbox">
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="section"></div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

@@ -1,0 +1,32 @@
+@import "./styles/variables";
+
+
+.searchbar {
+  display: flex;
+  flex-direction: column;
+  &__input {
+    height: 2.3rem;
+  }
+  &__menu {
+    background: transparent;
+    :is(a) {
+      color: $gray;
+      &::before {
+        color: $gray;
+      }
+    }
+    &-item {
+      padding-left: 1rem;
+      cursor: pointer;
+    }
+
+  }
+  &__filter {
+    display: flex;
+    gap: 2rem;
+    &-item {
+      padding-left: 1rem;
+      border-left: solid 1px $teal;
+    }
+  }
+}

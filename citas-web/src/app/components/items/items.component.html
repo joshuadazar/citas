@@ -1,0 +1,29 @@
+<ul class="collection resultlist" *ngIf="detailState==false">
+  <a class="collection-item avatar resultlist__item" *ngFor="let item of itemsArr" (click)="searchItem(item)" >
+
+    <img [attr.src]="item.image" alt="" class="circle">
+    <span class="title" >{{item.name}}</span>
+    <p>Rato: ${{item.price}} <br>
+       <b>Servicios:</b> {{item.services}}
+    </p>
+    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+  </a>
+</ul>
+
+<div class="row" *ngIf="detailState">
+  <div class="col s12 m4">
+    <div class="card" style="height:200px;" >
+      <div class="card-image" >
+        <img [attr.src]="data.image  " class="z-depth-2 hoverable" >
+        <span class="card-title white-text z-depth-2" style="background: hsla( 50, 1%, 50%, .5);">{{data.name }}</span>
+      </div>
+      <div class="card-content">
+        <p>{{data.services }}</p>
+      </div>
+      <div class="card-action">
+        <a (click)="detailState= false">Volver</a>
+        <a class="btn  waves-effect waves-light">Contratar <i class="material-icons right">payment</i></a>
+      </div>
+    </div>
+  </div>
+</div>

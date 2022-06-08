@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s12 m4">
+    <div class="card" style="height:200px;" >
+      <div class="card-image" >
+        <img [attr.src]="itemDetails.image  " class="z-depth-2 hoverable" >
+        <span class="card-title white-text z-depth-2" style="background: hsla( 50, 1%, 50%, .5);">{{itemDetails.name }}</span>
+      </div>
+      <div class="card-content">
+        <p>{{itemDetails.services }}</p>
+      </div>
+      <div class="card-action">
+        <a routerLink="/lucky">Volver</a>
+        <a routerLink="/lucky" class="btn  waves-effect waves-light">Contratar <i class="material-icons right">payment</i></a>
+      </div>
+    </div>
+  </div>
+</div>
