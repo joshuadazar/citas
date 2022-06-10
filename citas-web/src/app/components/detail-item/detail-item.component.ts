@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Items } from 'src/app/models/items';
 import { FiltersService } from 'src/app/services/filters.service';
 
@@ -7,22 +9,25 @@ import { FiltersService } from 'src/app/services/filters.service';
   templateUrl: './detail-item.component.html',
   styleUrls: ['./detail-item.component.scss']
 })
-export class DetailItemComponent implements OnInit {
+export class DetailItemComponent implements OnInit, OnDestroy {
 
-  constructor(private filtersService: FiltersService) { }
+  constructor(private filtersService: FiltersService, private itemParam: ActivatedRoute) { }
 
-  public itemDetails: Items = {
-    name: 'User Name',
-    price: 0,
-    services: 'Loading',
-    image:'https://mir-s3-cdn-cf.behance.net/projects/404/c51bfa66111313.Y3JvcCw3MTYsNTYwLDEyOTAsMjI0.png'
+  public itemDetails: any = {
+
   }
 
-  ngOnInit(): void {
-    this.filtersService.watchitem().subscribe(item => {
-      this.itemDetails = item
-      console.log(this.itemDetails);
+
+  ngOnInit() {
+
+
+    this.itemParam.params.subscribe(param => {
+      this.itemDetails = param;
     })
+  }
+
+  ngOnDestroy(): void {
+   //this.itemSubscription.unsubscribe();
   }
 
 

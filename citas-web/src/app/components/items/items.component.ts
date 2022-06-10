@@ -48,4 +48,8 @@ export class ItemsComponent implements OnInit {
 
   }
 
+  // showPaymentDetails() {
+  //   this.router.navigate(['/', 'itemDetail']);
+  // }
+
 }
