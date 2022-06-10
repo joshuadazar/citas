@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "citas-web:build:production",
+            "firebaseProject": "fuckgle-citas",
+            "firebaseHostingSite": "fuckgle-citas"
+          }
         }
       }
     }

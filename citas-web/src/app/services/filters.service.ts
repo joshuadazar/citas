@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Items } from '../models/items';
-
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class FiltersService {
-  constructor() { }
+  constructor(private itemData: AngularFirestore) { }
   private listOrder = new Subject<string>();
 
 
@@ -53,4 +53,8 @@ export class FiltersService {
     },
 
   ]
+
+  getItemDB() {
+    return this.itemData.collection('items').valueChanges();
+  }
 }

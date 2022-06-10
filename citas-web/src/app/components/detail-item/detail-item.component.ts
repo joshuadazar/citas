@@ -19,7 +19,10 @@ export class DetailItemComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.filtersService.getItemDB().subscribe(items => {
+      console.log(items);
 
+    })
 
     this.itemParam.params.subscribe(param => {
       this.itemDetails = param;

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "fuckgle-citas"
+  },
+  "targets": {
+    "fuckgle-citas": {
+      "hosting": {
+        "citas-web": [
+          "fuckgle-citas"
+        ]
+      }
+    }
   }
 }
