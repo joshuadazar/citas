@@ -19,12 +19,12 @@
   <input type="text" class="browser-default searchbar__input" #itemInput (keyup)="searchItem([itemInput.value])">
 
 
-  <nav class="searchbar__menu">
+  <nav class="searchbar__menu hide-on-med-and-down">
     <div class="nav-wrapper">
       <div class="col s12">
         <a href="#!" class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.random)" routerLink="/lucky">Tengo suerte!</a>
-        <a class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.lowPrice)">Ahí pal gasto...</a>
-        <a class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.highPrice)">Estoy quinceniaooo!!</a>
+        <a class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.lowPrice)">Económico</a>
+        <a class="breadcrumb searchbar__menu-item" (click)="showExpensives(orderList.highPrice)">Toy botao!</a>
         <a class="breadcrumb searchbar__menu-item" (click)="showFilters=!showFilters">Busqueda personalizada ⚙️</a>
       </div>
     </div>

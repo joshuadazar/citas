@@ -3,4 +3,7 @@ export interface Items {
     price: number;
     services: string;
     image: string;
+    description?: string;
+    cel?: string;
+
 }

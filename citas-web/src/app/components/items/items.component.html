@@ -15,7 +15,7 @@
 
 <div class="row" *ngIf="detailState">
   <div class="col s12 m4">
-    <div class="card" style="height:200px;" >
+    <div class="card" >
       <div class="card-image" >
         <img [attr.src]="dataParam.image  " class="z-depth-2 hoverable" >
         <span class="card-title white-text z-depth-2" style="background: hsla( 50, 1%, 50%, .5);">{{dataParam.name }}</span>
@@ -26,6 +26,20 @@
       <div class="card-action">
         <a (click)="detailState= false">Volver</a>
         <a [routerLink]="['/itemDetail', dataParam, ]" class="btn  waves-effect waves-light">Contratar <i class="material-icons right">payment</i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6">
+    <div class="card teal">
+      <div class="card-content white-text">
+        <span class="card-title">Presentación</span>
+        <p>{{dataParam.description}}</p>
+      </div>
+      <div class="card-action">
+        <a class="white-text">Celular:</a>
+        <a class="white-text">{{dataParam.cel}}</a>
+        <a class="btn waves-effect waves-light yellow darken-2" (click)="detailState= false">Volver al listado<i class="material-icons bigger right">reply</i></a>
       </div>
     </div>
   </div>

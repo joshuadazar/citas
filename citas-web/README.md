@@ -19,6 +19,6 @@ Setup: in general folder in console type
 
 firebase init hosting
 / follow the steps below. Deployment: inside folder
-dist/bauhaus/
+dist/citas-web/
 type
 firebase deploy --only hosting
