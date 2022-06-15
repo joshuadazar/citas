@@ -1,6 +1,22 @@
+<nav>
+  <div class="nav-wrapper teal">
+    <a href="#" class="brand-logo"> Beta Version</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a>SignUp</a></li>
+        <li><a>Login</a></li>
+
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="collapsible.html">SignUp</a></li>
+        <li><a href="mobile.html">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
 <div class="container searchbar">
   <h1 class="center teal-text">Fuckgle <i class="tiny material-icons right">insert_chart</i></h1>
-  <input type="text" class="browser-default searchbar__input">
+  <input type="text" class="browser-default searchbar__input" #itemInput (keyup)="searchItem([itemInput.value])">
 
 
   <nav class="searchbar__menu">
@@ -14,41 +30,34 @@
     </div>
   </nav>
   <div class="section"></div>
+
+
+
   <div *ngIf="showFilters"  class="searchbar__filter animate__animated" [ngClass]="showFilters ? 'animate__fadeInDown' : 'animate__fadeOutUp'" >
-    <div class="col s4 searchbar__filter-item">
-      <span class="grey-text text-darken-0">Por nombre</span>
-      <div class="switch">
-        <label>
-          Off
-          <input type="checkbox">
-          <span class="lever"></span>
-          On
+    <form class="searchbar__filter-form" action="#">
+      <p>
+        <label class="radio-button">
+          <input class="with-gap" name="group1" type="radio" (click)="setFilterCriteria(filterCriteriaOptions.name)" #byName [attr.checked]="filterCriteria==filterCriteriaOptions.name ?  true : null" />
+          <span>Nombre</span>
         </label>
-      </div>
-    </div>
-    <div class="col s4 searchbar__filter-item">
-      <span class="grey-text text-darken-0">Por precio</span>
-      <div class="switch">
-        <label>
-          Off
-          <input type="checkbox">
-          <span class="lever"></span>
-          On
+      </p>
+      <p>
+        <label class="radio-button">
+          <input class="with-gap" name="group1" type="radio"(click)="setFilterCriteria(filterCriteriaOptions.services)" #byService [attr.checked]="filterCriteria==filterCriteriaOptions.services ?  true : null"/>
+          <span>Servicio</span>
         </label>
-      </div>
-    </div>
-    <div class="col s4 searchbar__filter-item">
-      <span class="grey-text text-darken-0">Por servicio</span>
-      <div class="switch">
-        <label>
-          Off
-          <input type="checkbox">
-          <span class="lever"></span>
-          On
+      </p>
+      <p>
+        <label class="radio-button">
+          <input class="with-gap" name="group1" type="radio"(click)="setFilterCriteria(filterCriteriaOptions.price)" #byPrice [attr.checked]="filterCriteria==filterCriteriaOptions.price ?  true : null"/>
+          <span>Precio</span>
         </label>
-      </div>
-    </div>
+      </p>
+
+    </form>
   </div>
+
+
 
 </div>
 <div class="section"></div>

@@ -26,6 +26,21 @@ export class FiltersService {
     this.item.next(status);
   }
 
+  // searchItem
+
+  private searchItem = new Subject<any[]>();
+
+  watchSearchItem(): Observable<any[]> {
+    return this.searchItem.asObservable();
+  }
+  setSearchItem(itemSearch: any[]) {
+    this.searchItem.next(itemSearch);
+  }
+
+
+
+  // Cache
+
   public itemsArr: Array<Items> = [
     {
       name: 'Juliana Cumloader',

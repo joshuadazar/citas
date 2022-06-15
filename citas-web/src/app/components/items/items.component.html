@@ -1,5 +1,8 @@
 <ul class="collection resultlist" *ngIf="detailState==false">
-  <a class="collection-item avatar resultlist__item" *ngFor="let item of itemsArr" (click)="searchItem(item)" >
+  <p *ngIf="itemsArr.length==0">
+    <a class="btn-floating pulse"><i class="material-icons">gps_off</i></a>
+     No se encuentran coincidencias...</p>
+  <a class="collection-item avatar resultlist__item" *ngFor="let item of itemsArr" (click)="showDetailsItem(item)" >
 
     <img [attr.src]="item.image" alt="" class="circle">
     <span class="title" >{{item.name}}</span>
@@ -14,15 +17,15 @@
   <div class="col s12 m4">
     <div class="card" style="height:200px;" >
       <div class="card-image" >
-        <img [attr.src]="data.image  " class="z-depth-2 hoverable" >
-        <span class="card-title white-text z-depth-2" style="background: hsla( 50, 1%, 50%, .5);">{{data.name }}</span>
+        <img [attr.src]="dataParam.image  " class="z-depth-2 hoverable" >
+        <span class="card-title white-text z-depth-2" style="background: hsla( 50, 1%, 50%, .5);">{{dataParam.name }}</span>
       </div>
       <div class="card-content">
-        <p>{{data.services }}</p>
+        <p>{{dataParam.services }}</p>
       </div>
       <div class="card-action">
         <a (click)="detailState= false">Volver</a>
-        <a [routerLink]="['/itemDetail', data, ]" class="btn  waves-effect waves-light">Contratar <i class="material-icons right">payment</i></a>
+        <a [routerLink]="['/itemDetail', dataParam, ]" class="btn  waves-effect waves-light">Contratar <i class="material-icons right">payment</i></a>
       </div>
     </div>
   </div>
