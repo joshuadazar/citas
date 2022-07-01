@@ -1,5 +1,17 @@
 @import "./styles/variables";
 
+.side-nav {
+  transform: translateX(0px);
+  top:56px;
+}
+.modalMobile {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background: lighten($black, 40%);
+  opacity: .3;
+}
 
 .searchbar {
   display: flex;

@@ -1,22 +1,27 @@
 <nav>
   <div class="nav-wrapper teal">
     <a href="#" class="brand-logo"> Beta Version</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a>SignUp</a></li>
-        <li><a>Login</a></li>
+    <a (click)="toggleMobileMenu=!toggleMobileMenu"data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li *ngIf="authName==''" (click)="loginWithGoogle()"><a>Login with Google <i class="material-icons left">person</i></a></li>
+      <li *ngIf="authName !== '' "><a>Welcome {{authName}} <i class="material-icons left">person</i></a></li>
+      <li *ngIf="authName !== '' "><a routerLink="/panelItems">Control Panel <i class="material-icons left">vpn_key</i></a></li>
+      <li *ngIf="authName !== '' " (click)="logOutUser()"><a routerLink="/panelItems">Close session <i class="material-icons left">close</i></a></li>
 
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="collapsible.html">SignUp</a></li>
-        <li><a href="mobile.html">Login</a></li>
-      </ul>
-    </div>
-  </nav>
+    </ul>
+    <div class="modalMobile" *ngIf="toggleMobileMenu" (click)="toggleMobileMenu=false"></div>
+    <ul class="side-nav" *ngIf="toggleMobileMenu" id="mobile-demo">
+      <li *ngIf="authName==''" (click)="loginWithGoogle()"><a>Login<i class="material-icons left">person</i></a></li>
+      <li *ngIf="authName !=='' "><a>Welcome {{authName}} <i class="material-icons left">person</i></a></li>
+      <li *ngIf="authName!== '' "><a>Control Panel <i class="material-icons left">vpn_key</i></a></li>
+      <li *ngIf="authName !== '' " (click)="logOutUser()"><a routerLink="/panelItems">Close session <i class="material-icons left">close</i></a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="container searchbar">
   <h1 class="center teal-text">Fuckgle <i class="tiny material-icons right">insert_chart</i></h1>
-  <input type="text" class="browser-default searchbar__input" #itemInput (keyup)="searchItem([itemInput.value])">
+  <input type="text" class="browser-default searchbar__input" #itemInput (keyup)="searchItem([itemInput.value.toLowerCase()])">
 
 
   <nav class="searchbar__menu hide-on-med-and-down">

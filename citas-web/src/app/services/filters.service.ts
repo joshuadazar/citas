@@ -6,7 +6,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class FiltersService {
-  constructor(private itemData: AngularFirestore) { }
+  constructor(
+    private itemData: AngularFirestore,
+
+    ) { }
   private listOrder = new Subject<string>();
 
 
@@ -72,4 +75,7 @@ export class FiltersService {
   getItemDB() {
     return this.itemData.collection('items').valueChanges();
   }
+
+
+
 }
