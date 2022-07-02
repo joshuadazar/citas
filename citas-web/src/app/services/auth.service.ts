@@ -13,15 +13,6 @@ export class AuthService {
 
   // user logged
 
-  private userLogged = new Subject<boolean>();
-
-  watchUserLogged(): Observable<boolean> {
-    return this.userLogged.asObservable();
-  }
-  setuserLogged(itemSearch: boolean) {
-    this.userLogged.next(itemSearch);
-  }
-
   //login
 
   async loginWithGoogle() {
