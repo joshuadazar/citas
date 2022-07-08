@@ -1,1 +1,28 @@
-<p>panel-items works!</p>
+<ul class="tabs">
+  <li class="tab col s3"><a href="#test1">Test 1</a></li>
+  <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+  <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+  <li class="tab col s3"><a href="#test4">Test 4</a></li>
+</ul>
+
+<form>
+  <div class="input-field col s12 l6">
+    <input type="text" id="primer_nombre" class="validate">
+    <label for="primer_nombre">Primer Nombre</label>
+  </div>
+  <div class="input-field col s12 l6">
+    <input type="text" id="segundo_nombre" class="validate">
+    <label for="segundo_nombre">Segundo Nombre</label>
+  </div>
+  <div class="input-field col s12">
+    <input type="email" id="email" class="validate">
+    <label for="email" data-error="Correo Inválido" data-success="Correcto">Email</label>
+  </div>
+  <div class="input-field col s12">
+    <textarea id="mensaje" class="materialize-textarea"></textarea>
+    <label for="mensaje">Mensaje</label>
+  </div>
+  <button class="btn waves-effect waves-light blue" type="submit" name="action">Enviar
+    <i class="material-icons right">send</i>
+  </button>
+</form>

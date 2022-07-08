@@ -1,8 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Renderer2, OnDestroy } from '@angular/core';
 import { FiltersService } from './services/filters.service';
 import { Router } from '@angular/router';
 import { AuthService } from "./services/auth.service";
 import { UserProfile } from './models/userProfile';
+import { UiService } from './services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +12,26 @@ import { UserProfile } from './models/userProfile';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('itemInput') itemInput!: ElementRef;
   @ViewChild('byName') checkByName!: ElementRef;
   @ViewChild('byServices') checkByServices!: ElementRef;
   @ViewChild('byPrice') checkByPrice!: ElementRef;
 
+  //Subscriptions
+  navbarSubscriptions: Subscription = new Subscription();
+
+  //UI
+  public showNavbarState:boolean = true;
   public showFilters: boolean = false;
   public toggleMobileMenu: boolean= false;
+
+  // DATA
   public orderList = {
     highPrice: 'high',
     lowPrice: 'low',
     random: 'random'
   }
-
   public userAuthenticated: UserProfile | null | undefined | string ={}
   public authName : string | undefined | null = ''
   public authEmail : string | undefined | null = ''
@@ -41,12 +49,15 @@ export class AppComponent implements OnInit {
     private filtersService: FiltersService,
     private router: Router,
     private renderer: Renderer2,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private ui$: UiService) { }
 
   ngOnInit(): void {
     //this.filtersService.setfilterItem('name')
     this.validateUserLogged();
+    this.watchNavbar()
   }
+
 
   validateUserLogged() {
      this.authEmail = sessionStorage.getItem('email') == null ? '' : sessionStorage.getItem('email')
@@ -69,14 +80,13 @@ export class AppComponent implements OnInit {
     }
   }
 
-
-
   setFilterCriteria(filterSelected: string ) {
     this.filterCriteria= filterSelected
     this.itemInput.nativeElement.value = ""
     this.searchItem(['']);
   }
 
+  //Auth
   loginWithGoogle() {
     this.auth.loginWithGoogle().then(res => {
       if (res !== undefined || res !==null) {
@@ -87,16 +97,25 @@ export class AppComponent implements OnInit {
         sessionStorage.setItem('name', this.userAuthenticated?.name!);
         sessionStorage.setItem('email', this.userAuthenticated?.email!);
         sessionStorage.setItem('userLogged', 'true');
-
       }
     })
   }
-
 
   logOutUser() {
     this.router.navigateByUrl('/lucky')
     sessionStorage.clear();
     this.validateUserLogged()
+  }
+
+  // watchers
+  watchNavbar() {
+    this.navbarSubscriptions = this.ui$.watchlshowSearchBar().subscribe((status:boolean)=> {
+      this.showNavbarState = status
+    })
+  }
+
+  ngOnDestroy(): void {
+      this.navbarSubscriptions.unsubscribe()
   }
 
 
