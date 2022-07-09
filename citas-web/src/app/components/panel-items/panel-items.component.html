@@ -1,28 +1,92 @@
-<ul class="tabs">
-  <li class="tab col s3"><a href="#test1">Test 1</a></li>
-  <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-  <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-  <li class="tab col s3"><a href="#test4">Test 4</a></li>
-</ul>
 
-<form>
-  <div class="input-field col s12 l6">
-    <input type="text" id="primer_nombre" class="validate">
-    <label for="primer_nombre">Primer Nombre</label>
+  <nav class="row transparent z-depth-0">
+    <div class="nav-wrapper col s12 m10 offset-m1 teal">
+      <div class="col s12">
+        <a href="#!" class="breadcrumb">Crear Item</a>
+        <a href="#!" class="breadcrumb">Buscar Item</a>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="section"></div>
+
+<div class="row ">
+  <div class="col s12 m10 offset-m1 z-depth-1-half">
+    <form [formGroup]="itemForm" (ngSubmit)="createNewItem()">
+      <div class="input-field col s12 m6 l6">
+        <i class="material-icons prefix teal-text">contacts</i>
+        <input type="text" id="name" class="validate" formControlName="name" required>
+        <label for="name">Nombre</label>
+      </div>
+
+      <div class="input-field col s12 m6 l3">
+        <i class="material-icons prefix teal-text">phone</i>
+        <input type="text" id="cel" class="validate" formControlName="cel">
+        <label for="cel">móvil / cel</label>
+      </div>
+
+      <div class="input-field col s12 m6 l3">
+        <i class="material-icons prefix teal-text">attach_money</i>
+        <input type="text" id="price" class="validate" formControlName="price">
+        <label for="price">Tarifa / hora</label>
+      </div>
+
+      <div class="input-field col s12">
+        <i class="material-icons prefix teal-text">create</i>
+        <textarea id="description" class="materialize-textarea" formControlName="description"></textarea>
+        <label for="description">Descripción de Necia</label>
+      </div>
+
+      <div class="input-field col s12 ">
+        <a class="waves-effect waves-light btn teal white-text" (click)="showItemServices()">
+          Servicios<i class="material-icons right">arrow_drop_down</i>
+        </a>
+        <span class="new badge"> {{itemServicesSelected.length}}</span>
+      </div>
+
+      <div class="input-field col s12 ">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Cargar Fotos <i class="material-icons right">camera_alt</i></span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="input-field col s12">
+        <button class="btn waves-effect waves-light teal" type="submit" name="action">Enviar
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+
+      <div class="input-field col s12">&nbsp;</div>
+    </form>
+
+    <div class="modal__services" *ngIf="_showItemServicesState" (click)="showItemServices()">
+    </div>
+    <div class="modal__services-container" *ngIf="_showItemServicesState">
+      <a class="waves-effect waves-light btn teal white-text" (click)="showItemServices()">Cerrar ventana
+        <i class="material-icons right">close</i>
+      </a>
+      <div class="collection">
+        <a class="collection-item avatar">
+          <i class="material-icons circle">playlist_add_check</i>
+          <span class="title">Seleccione los servicios</span>
+          <p>(Puede escoger varios)</p>
+        </a>
+        <a class="collection-item" *ngFor="let itemService of itemServicesArr"
+        (click)="setItemService(itemService)">{{itemService.name}}
+        <a class="secondary-content"><i class="material-icons teal-text" *ngIf="validateItemServiceSelected(itemService)">done</i></a>
+        </a>
+      </div>
+
+    </div>
+
   </div>
-  <div class="input-field col s12 l6">
-    <input type="text" id="segundo_nombre" class="validate">
-    <label for="segundo_nombre">Segundo Nombre</label>
-  </div>
-  <div class="input-field col s12">
-    <input type="email" id="email" class="validate">
-    <label for="email" data-error="Correo Inválido" data-success="Correcto">Email</label>
-  </div>
-  <div class="input-field col s12">
-    <textarea id="mensaje" class="materialize-textarea"></textarea>
-    <label for="mensaje">Mensaje</label>
-  </div>
-  <button class="btn waves-effect waves-light blue" type="submit" name="action">Enviar
-    <i class="material-icons right">send</i>
-  </button>
-</form>
+</div>
+
+

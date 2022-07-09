@@ -22,11 +22,11 @@ export class ItemsComponent implements OnInit, OnDestroy {
   public itemsArrCache: Array<Items> = [];
   public dataParam: any;
   public detailState: boolean= false;
-  private itemsSubscription: Subscription = new Subscription();
+  private itemsSubscription$: Subscription = new Subscription();
   public filterCriteria: string ='';
   ngOnInit(): void {
 
-    this.itemsSubscription= this.filtersService.getItemDB().subscribe((items: any) => {
+    this.itemsSubscription$= this.filtersService.getItemDB().subscribe((items: any) => {
       try {
         items.length==0 ? this.itemsArr = this.filtersService.itemsArr :
         this.itemsArr= items
@@ -89,7 +89,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.itemsSubscription.unsubscribe();
+      this.itemsSubscription$.unsubscribe();
   }
 
   // showPaymentDetails() {

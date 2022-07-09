@@ -72,8 +72,20 @@ export class FiltersService {
 
   ]
 
+  //Database items
+
   getItemDB() {
     return this.itemData.collection('items').valueChanges();
+  }
+
+  saveItemDB(item: any) {
+    return this.itemData.collection('items').add({...item})
+  }
+
+  //Database item services
+
+  getAllItemServices() {
+    return this.itemData.collection('services').valueChanges();
   }
 
 

@@ -1,0 +1,35 @@
+input:focus + label, textarea + label{
+  transform: translatey(-5px);
+}
+input, textarea{
+  text-align: center;
+  &:focus {
+    text-align: left;
+  }
+}
+
+.modal__services {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: silver;
+  opacity: .8;
+  z-index: 2;
+
+}
+.modal__services-container {
+  position: absolute;
+  display:grid;
+  place-items: center;
+  z-index: 3;
+  width: 50vw;
+  a {
+    top: 0vh;
+    margin: 0 auto;
+  }
+  .collection {
+    width: 100%;
+  }
+}
