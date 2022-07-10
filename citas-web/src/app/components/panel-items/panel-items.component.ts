@@ -23,6 +23,8 @@ export class PanelItemsComponent implements OnInit, OnDestroy {
   //DATA
   public itemServicesArr : Array<ItemService> = []
   public itemServicesSelected : Array<ItemService> = []
+  public itemServicesToString : string = ''
+
 
   constructor(private ui$: UiService, private fb: FormBuilder, private db :FiltersService) {
     this.ui$.setShowSearchBar(false);
@@ -34,14 +36,23 @@ export class PanelItemsComponent implements OnInit, OnDestroy {
   }
 
   createForm(): void {
+    let serviceSelected : Array<any> =[]
     this.itemForm = this.fb.group({
       name: [''],
       cel: [''],
       price: [0],
-      services: ['no selected'],
+      services: [''],
       image: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH4d1ldfiI0npUaDbUXnRHjumUJmSpIaKErA&usqp=CAU'],
       description: ['']
     })
+  }
+
+  setServicesToString() {
+    this.itemServicesToString = this.itemServicesSelected.map((service:any)=> service.name ).join('| ')
+    console.log(this.itemServicesToString);
+    if(this.itemServicesToString !=='') {
+      this.itemForm.controls['services'].setValue(this.itemServicesToString)
+    }
   }
 
   setItemService(service: ItemService): void {
@@ -51,7 +62,6 @@ export class PanelItemsComponent implements OnInit, OnDestroy {
     } else {
       this.itemServicesSelected.push(service)
     }
-    console.log(this.itemServicesSelected);
   }
 
   validateItemServiceSelected(service:any): any {
@@ -60,6 +70,7 @@ export class PanelItemsComponent implements OnInit, OnDestroy {
 
   //Database
   createNewItem() {
+    console.log(this.itemForm.value);
     this.db.saveItemDB(this.itemForm.value)
     .then(result => console.log(result, 'succesfully saved'))
     .catch(err => console.log(err, 'Error'))
@@ -69,7 +80,6 @@ export class PanelItemsComponent implements OnInit, OnDestroy {
     this.itemServices$ = this.db.getAllItemServices().subscribe((result:any)=> {
       try {
         this.itemServicesArr = result
-        console.log(this.itemServicesArr);
       } catch (error) {
         console.log(error);
       }
@@ -80,6 +90,7 @@ export class PanelItemsComponent implements OnInit, OnDestroy {
     this._showItemServicesState = !this._showItemServicesState
     this._showItemServicesState &&
     this.getAllItemServices();
+    this.setServicesToString();
   }
 
   ngOnDestroy(): void {

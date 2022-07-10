@@ -2,8 +2,8 @@
   <nav class="row transparent z-depth-0">
     <div class="nav-wrapper col s12 m10 offset-m1 teal">
       <div class="col s12">
-        <a href="#!" class="breadcrumb">Crear Item</a>
-        <a href="#!" class="breadcrumb">Buscar Item</a>
+        <a  class="breadcrumb">Buscar Item</a>
+        <a  class="breadcrumb">Crear Item</a>
       </div>
     </div>
   </nav>
@@ -42,6 +42,9 @@
         <a class="waves-effect waves-light btn teal white-text" (click)="showItemServices()">
           Servicios<i class="material-icons right">arrow_drop_down</i>
         </a>
+        <input class="file-path validate" type="text"
+        [value]="itemServicesToString" formControlName="services"
+        >
         <span class="new badge"> {{itemServicesSelected.length}}</span>
       </div>
 
@@ -66,8 +69,7 @@
       <div class="input-field col s12">&nbsp;</div>
     </form>
 
-    <div class="modal__services" *ngIf="_showItemServicesState" (click)="showItemServices()">
-    </div>
+    <div class="modal__services" *ngIf="_showItemServicesState" (click)="showItemServices()"></div>
     <div class="modal__services-container" *ngIf="_showItemServicesState">
       <a class="waves-effect waves-light btn teal white-text" (click)="showItemServices()">Cerrar ventana
         <i class="material-icons right">close</i>
